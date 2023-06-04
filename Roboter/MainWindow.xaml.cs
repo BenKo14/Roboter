@@ -87,7 +87,7 @@ namespace Roboter
 
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Config Files (*.cfg)|*cfg|Csv Files (*.csv)|*csv|Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
-            openFileDialog.InitialDirectory = @"C:\Users\BKohlstedt\Desktop\Projekte\Roboter\RoboXmlData";
+            openFileDialog.InitialDirectory = SetStartUpFolder.DirectoryPath + @"\RoboXmlData";
             FilePath = openFileDialog.FileName;
 
 
@@ -111,14 +111,14 @@ namespace Roboter
         private void Btn_Click_Csv(object sender, RoutedEventArgs e)
         {
             Projectname = cmb_Projectnamen.SelectedItem.ToString();
-            string strFilePath = @"C:\Users\BKohlstedt\Desktop\Projekte\Roboter\RoboCsvData\" + Projectname + ".csv";
+            string strFilePath = SetStartUpFolder.DirectoryPath +  @"\RoboCsvData\" + Projectname + ".csv";
             saveData.ExportToCsv(loadData.Datatable, strFilePath);
         }
         //#####################################################################################################
 
         private void Btn_Click_Add(object sender, RoutedEventArgs e)
         {
-            string Path = @"C:\Users\BKohlstedt\Desktop\Projekte\Roboter\RoboXmlData\" + ProjectName.Text.ToString() + ".xml";
+            string Path = SetStartUpFolder.DirectoryPath + @"\Roboter\RoboXmlData\" + ProjectName.Text.ToString() + ".xml";
             if (ProjectName.Text.ToString() != string.Empty && !File.Exists(Path))
             {
                 try
@@ -177,7 +177,7 @@ namespace Roboter
 
         private void Btn_Click_RemoveProject(object sender, RoutedEventArgs e)
         {
-            string Path = @"C:\Users\BKohlstedt\Desktop\Projekte\Roboter\ProjectNamespace\" + cmb_Projectnamen.SelectedItem.ToString() + ".xml";
+            string Path = SetStartUpFolder.DirectoryPath + @"\ProjectNamespace\" + cmb_Projectnamen.SelectedItem.ToString() + ".xml";
             if (File.Exists(Path))
             {
 

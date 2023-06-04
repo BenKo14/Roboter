@@ -16,7 +16,7 @@ namespace Roboter.Function
         {
             if (cmb_Projectnamen.Items.Count != 0)
             {
-                string path = @"C:\Users\BKohlstedt\Desktop\Projekte\Roboter\RoboXmlData\" + cmb_Projectnamen.SelectedItem.ToString() + ".xml";
+                string path = SetStartUpFolder.DirectoryPath + @"\RoboXmlData\" + cmb_Projectnamen.SelectedItem.ToString() + ".xml";
                 Stream stream = new FileStream(path, FileMode.Open); // , FileMode.Open, FileAccess.Read
                 try
                 {

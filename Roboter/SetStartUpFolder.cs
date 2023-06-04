@@ -9,12 +9,12 @@ using System.Windows;
 
 namespace Roboter
 {
-    class SetStartUpFolder
+   public class SetStartUpFolder
     {
-        public string DirectoryPath { get; set; }
+        public static string DirectoryPath { get; set; }
         public void BuildStartLocation()
         {
-            string DirectoryPath = Directory.GetCurrentDirectory();
+            DirectoryPath = Directory.GetCurrentDirectory();
             int resultPath = DirectoryPath.LastIndexOf('\\');
             DirectoryPath = DirectoryPath.Substring(0, resultPath - 1);
             resultPath = DirectoryPath.LastIndexOf('\\');

@@ -20,7 +20,7 @@ namespace Roboter.XML
                 oXmlWriterSettings.IndentChars = "  ";
                 oXmlWriterSettings.NewLineChars = "\r\n";
 
-                oXmlWriter = XmlWriter.Create(@"C:\Users\BKohlstedt\Desktop\Projekte\Roboter\RoboXmlData\Projectnames.xml", oXmlWriterSettings);
+                oXmlWriter = XmlWriter.Create(@"", oXmlWriterSettings);
 
                 // XML-Validierungs-Kopf
                 oXmlWriter.WriteStartDocument(true);    // true = standalone="yes"

@@ -16,7 +16,7 @@ namespace Roboter.Function
         public void CreateCfgData(DataTable Datatable, string Projektname)
         {
             
-            WritePath = @"C:\Users\BKohlstedt\Desktop\Projekte\Roboter\RoboCfgData\" + Projektname + ".cfg";
+            WritePath = SetStartUpFolder.DirectoryPath + @"\RoboCfgData\" + Projektname + ".cfg";
 
             if(File.Exists(WritePath))
             {

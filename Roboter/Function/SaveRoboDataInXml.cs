@@ -32,8 +32,8 @@ namespace Roboter.Function
         {
             if(cmb_Projectnamen.Items.Count != 0 )
             {
-                Path = @"C:\Users\BKohlstedt\Desktop\Projekte\Roboter\RoboXmlData\" + cmb_Projectnamen.SelectedItem.ToString() + ".xml";
-                Path2 = @"C:\Users\BKohlstedt\Desktop\Projekte\Roboter\RoboCfgData\" + cmb_Projectnamen.SelectedItem.ToString() + ".cfg";
+                Path = SetStartUpFolder.DirectoryPath + @"\RoboXmlData\" + cmb_Projectnamen.SelectedItem.ToString() + ".xml";
+                Path2 = SetStartUpFolder.DirectoryPath + @"\RoboCfgData\" + cmb_Projectnamen.SelectedItem.ToString() + ".cfg";
                 try
                 {
                     if (File.Exists(Path))
@@ -62,7 +62,7 @@ namespace Roboter.Function
         {
             CreateXmlWriterSettings();
 
-            Path = @"C:\Users\BKohlstedt\Desktop\Projekte\Roboter\RoboXmlData\" + cmb_Projectnamen.SelectedItem.ToString() + ".xml";
+            Path = SetStartUpFolder.DirectoryPath + @"\RoboXmlData\" + cmb_Projectnamen.SelectedItem.ToString() + ".xml";
 
             string Projektname = cmb_Projectnamen.SelectedItem.ToString();
 

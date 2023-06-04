@@ -10,7 +10,7 @@ namespace Roboter.Function
 {
     class FilePath
     {
-        public static string docPath = @"C:\Users\BKohlstedt\Desktop\Projekte\Roboter\RoboXmlData\";
+        public static string docPath = SetStartUpFolder.DirectoryPath + @"\Roboter\RoboXmlData\";
         public List<string> Files { get; set; } 
 
 
