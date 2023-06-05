@@ -13,9 +13,6 @@ using System.Reflection;
 
 namespace Roboter
 {
-    /// <summary>
-    /// Interaktionslogik für MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         //#####################  Instanzen  ###################################################################
@@ -34,16 +31,14 @@ namespace Roboter
 
         //#####################  Propertys  ###################################################################
         public string Projectname { get; set; }
-        public  string PathUri { get; set; }
+        public string PathUri { get; set; }
         public string StarUriPath { get; set; }
         //#####################################################################################################
         public MainWindow()
         {
             InitializeComponent();
-            startLocation.BuildStartLocation();
+            SetStartUpFolder.BuildStartLocation();
         }
-
-        
         //#####################################################################################################
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -54,7 +49,8 @@ namespace Roboter
             filePath.SetProjectNames(cmb_Projectnamen, ListProjectnames); // setzt Combobox Items
             //#####################################################################################################
             //Combobox Signal, Acceslevel, safetyleve
-            loadData.SetComboboxItems(Cmb_TypeOfSignal, Cmb_AccessLevel, Cmb_SafeLevel, Cmb_Invert /* DeviceMapStart, DeviceMapEnd*/);
+            loadData.SetComboboxItems(Cmb_TypeOfSignal, Cmb_AccessLevel, Cmb_SafeLevel, Cmb_Invert);
+            //loadData.SetComboboxItems(Cmb_TypeOfSignal, Cmb_Out_TypeOfSignal, Cmb_AccessLevel, Cmb_Out_AccessLevel, Cmb_SafeLevel, Cmb_Out_SafeLevel, Cmb_Invert, Cmb_Out_Invert /* DeviceMapStart, DeviceMapEnd*/);
             //Datatable für xml
             loadData.CreateDatatableCol(cmb_Projectnamen);
             //Lade Xml für Datagrid
@@ -64,17 +60,19 @@ namespace Roboter
 
         private void Btn_Click_Uebernehmen(object sender, RoutedEventArgs e)
         {
-            try { 
-            loadData.SetDataToDatatable(tbName, Cmb_TypeOfSignal, tbAssingnedToDevice, tbSignalIdentificationLabel,
-            tbDeviceMapping, /*DeviceMapStart, DeviceMapEnd,*/ tbCategory, Cmb_AccessLevel, tbDefaultValue, tbFilterTimePassive,
-            tbFilterTimeActive, Cmb_SafeLevel, Cmb_Invert, datagrid);
+            try
+            {
+                //Eingang
+                loadData.SetDataToDatatable(tbName, Cmb_TypeOfSignal, tbAssingnedToDevice, tbSignalIdentificationLabel,
+                tbDeviceMapping, /*DeviceMapStart, DeviceMapEnd,*/ tbCategory, Cmb_AccessLevel, tbDefaultValue, tbFilterTimePassive,
+                tbFilterTimeActive, Cmb_SafeLevel, Cmb_Invert, datagrid);
 
-            datagrid.ItemsSource = loadData.Datatable.DefaultView;
+                datagrid.ItemsSource = loadData.Datatable.DefaultView;
 
-            saveRobo.SaveRoboData(cmb_Projectnamen, loadData, result, resultXml); //schreibe xml
-            saveRobo.SetXmlContent(result,resultXml, cmb_Projectnamen);
+                saveRobo.SaveRoboData(cmb_Projectnamen, loadData, result, resultXml); //schreibe xml
+                saveRobo.SetXmlContent(result, resultXml, cmb_Projectnamen);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
@@ -100,8 +98,6 @@ namespace Roboter
                 Window ViewWindow = new Window() { Height = 800, Width = 800 };
                 ViewWindow.Content = tb;
                 tb.Text = File.ReadAllText(openFileDialog.FileName);
-               
-                //result.Text = File.ReadAllText(openFileDialog.FileName);
 
                 ViewWindow.Show();
             }
@@ -111,14 +107,14 @@ namespace Roboter
         private void Btn_Click_Csv(object sender, RoutedEventArgs e)
         {
             Projectname = cmb_Projectnamen.SelectedItem.ToString();
-            string strFilePath = SetStartUpFolder.DirectoryPath +  @"\RoboCsvData\" + Projectname + ".csv";
+            string strFilePath = SetStartUpFolder.DirectoryPath + @"\RoboCsvData\" + Projectname + ".csv";
             saveData.ExportToCsv(loadData.Datatable, strFilePath);
         }
         //#####################################################################################################
 
         private void Btn_Click_Add(object sender, RoutedEventArgs e)
         {
-            string Path = SetStartUpFolder.DirectoryPath + @"\Roboter\RoboXmlData\" + ProjectName.Text.ToString() + ".xml";
+            string Path = SetStartUpFolder.DirectoryPath + @"\RoboXmlData\" + ProjectName.Text.ToString() + ".xml";
             if (ProjectName.Text.ToString() != string.Empty && !File.Exists(Path))
             {
                 try
@@ -157,8 +153,6 @@ namespace Roboter
         #region SaveRoboData
 
         //#####################################################################################################
-
-
         #endregion
 
         private void Cmb_Projectname_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -177,7 +171,8 @@ namespace Roboter
 
         private void Btn_Click_RemoveProject(object sender, RoutedEventArgs e)
         {
-            string Path = SetStartUpFolder.DirectoryPath + @"\ProjectNamespace\" + cmb_Projectnamen.SelectedItem.ToString() + ".xml";
+            string Path = SetStartUpFolder.DirectoryPath + @"\RoboXmlData\" + cmb_Projectnamen.SelectedItem.ToString() + ".xml";
+            string Path2 = SetStartUpFolder.DirectoryPath + @"\RoboCfgData\" + cmb_Projectnamen.SelectedItem.ToString() + ".cfg";
             if (File.Exists(Path))
             {
 
@@ -192,6 +187,11 @@ namespace Roboter
                     filePath.GetFilePath();
                     filePath.SeperateFileName(ListProjectnames);
                     filePath.SetProjectNames(cmb_Projectnamen, ListProjectnames);
+
+                    if (File.Exists(Path2))
+                    {
+                        File.Delete(Path2);
+                    }
                 }
             }
             else

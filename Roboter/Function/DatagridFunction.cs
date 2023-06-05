@@ -14,11 +14,10 @@ namespace Roboter.Function
         public string Val { get; set; } = string.Empty;
         public string Col { get; set; } = string.Empty;
 
-        public void SetColumn(DataTable datatable , string Col, TextBox tbName, ComboBox Cmb_TypeOfSignal, TextBox tbAssingnedToDevice,
-            TextBox tbSignalIdentificationLabel, TextBox tbDeviceMapping /*ComboBox DeviceMapStart, ComboBox DeviceMapEnd*/, TextBox tbCategory, ComboBox Cmb_AccessLevel,
+        public void SetColumn(DataTable datatable, string Col, TextBox tbName, ComboBox Cmb_TypeOfSignal, TextBox tbAssingnedToDevice,
+            TextBox tbSignalIdentificationLabel, TextBox tbDeviceMapping, TextBox tbCategory, ComboBox Cmb_AccessLevel,
             TextBox tbDefaultValue, TextBox tbFilterTimePassive, TextBox tbFilterTimeActive, ComboBox Cmb_SafeLevel)
         {
-
             switch (Col)
             {
                 case "Name":
@@ -39,7 +38,7 @@ namespace Roboter.Function
                     break;
                 case "DeviceMapping":
                     Col = "DeviceMapping";
-                    Val = tbDeviceMapping.Text.ToString();/*DeviceMapStart.SelectedItem.ToString() + "-" + DeviceMapEnd.SelectedItem.ToString();*/
+                    Val = tbDeviceMapping.Text.ToString();
                     break;
                 case "Category":
                     Col = "Category";

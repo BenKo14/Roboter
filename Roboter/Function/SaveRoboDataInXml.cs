@@ -28,9 +28,9 @@ namespace Roboter.Function
             return WriterSettings;
         }
 
-        public void SetXmlContent(TextBox result,TextBox resultXml, ComboBox cmb_Projectnamen)
+        public void SetXmlContent(TextBox result, TextBox resultXml, ComboBox cmb_Projectnamen)
         {
-            if(cmb_Projectnamen.Items.Count != 0 )
+            if (cmb_Projectnamen.Items.Count != 0)
             {
                 Path = SetStartUpFolder.DirectoryPath + @"\RoboXmlData\" + cmb_Projectnamen.SelectedItem.ToString() + ".xml";
                 Path2 = SetStartUpFolder.DirectoryPath + @"\RoboCfgData\" + cmb_Projectnamen.SelectedItem.ToString() + ".cfg";
@@ -47,15 +47,15 @@ namespace Roboter.Function
                         resultXml.Text = File.ReadAllText(Path2);
                     }
                     else { resultXml.Text = string.Empty; }
-                    
+
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
                 }
-                
+
             }
-            
+
         }
 
         public void SaveRoboData(ComboBox cmb_Projectnamen, LoadData loadData, TextBox result, TextBox resultXml)
@@ -75,7 +75,7 @@ namespace Roboter.Function
 
                 writer.CreateCfgData(loadData.Datatable, Projektname);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }

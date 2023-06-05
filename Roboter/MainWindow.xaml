@@ -27,19 +27,17 @@
                 <Button Name="Btn_WindowBrowser" Content="Browse" Click="Btn_Click_WindowBrowser" Width="100" Height="30" Margin="5 10 0 0"/>
                 <Button Name="Btn_Csv" Content="Export to Csv" Width="100" Height="30" Margin="5 10 0 0" Click="Btn_Click_Csv"/>
                 <Button Name="Btn_Cfg" Content="Create .Cfg" Width="100" Height="30" Margin="5 10 0 0" Click="Btn_Click_CreateCfg"/>
-                <Button Name="Reload" Content="Programm neu Laden" Width="150" Height="30" Margin="1440 10 0 0" Click="Btn_Click_Reaload"/>
+                <Label Content="Projektname:" Height="30" Margin="10 10 0 0"/>
+                <ComboBox Name="cmb_Projectnamen" ItemsSource="{Binding}" Margin="10 10 0 0" Width="250" Height="30"  SelectionChanged="Cmb_Projectname_SelectionChanged"/>
+                <Label Content="Add Projekt:" Height="30" Margin="50 10 0 0"/>
+                <TextBox x:Name="ProjectName" Width="250" Height="30" Margin="10 10 0 0"/>
+                <Button Name="Btn_AddProject" Content="Add" Width="100" Height="30" Margin="10 10 0 0" Click="Btn_Click_Add"/>
+                <Button Name="Btn_RemoveProject" Content="Remove Project" Width="150" Height="30" Margin="10 10 0 0" Click="Btn_Click_RemoveProject"/>
+                <Button Name="Reload" Content="Programm neu Laden" Width="150" Height="30" Margin="430 10 0 0" Click="Btn_Click_Reaload"/>
             </WrapPanel>
         </Border>
         <StackPanel Grid.Row="1" Background="LightGray">
-            <WrapPanel Margin="0 10 0 0">
-                <Label Content="Projektname:" Margin="10 0 0 0"/>
-                <ComboBox Name="cmb_Projectnamen" ItemsSource="{Binding}" Margin="55 0 0 0" Width="250"  SelectionChanged="Cmb_Projectname_SelectionChanged"/>
-                <Label Content="Add Projekt:" Margin="50 0 0 0"/>
-                <TextBox x:Name="ProjectName" Width="250" Height=" 30" Margin="10 0 0 0"/>
-                <Button Name="Btn_AddProject" Content="Add" Width="100" Margin="10 0 0 0" Click="Btn_Click_Add"/>
-                <Button Name="Btn_RemoveProject" Content="Remove Project" Width="150" Margin="10 0 0 0" Click="Btn_Click_RemoveProject"/>
-            </WrapPanel>
-            <Border BorderBrush="Black" BorderThickness="0 1 0 0 " Margin="0 15 0 0">
+            <Border BorderBrush="Black" BorderThickness="0 1 0 1 " Margin="0 15 0 10">
                 <WrapPanel Margin="0 10 0 0" >
                     <Label Content="Name" Style="{StaticResource lblStyle}"/>
                     <Label Content="Type of Signal" Style="{StaticResource lblStyle}"/>
@@ -53,6 +51,7 @@
                     <Label Content="Filter Time Active (ms)" Style="{StaticResource lblStyle}"/>
                     <Label Content="Safety" Style="{StaticResource lblStyle}"/>
                     <Label Content="Invert" Width="50" Style="{StaticResource lblStyle}"/>
+                    <Button Width="100" Content="Übernehmen" Click="Btn_Click_Uebernehmen"/>
                 </WrapPanel>
             </Border>
             <Border BorderBrush="Black" BorderThickness="0 0 0 1" Margin="0 0 0 0">
@@ -69,16 +68,17 @@
                     <TextBox Name="tbFilterTimeActive" Style="{StaticResource TextboxStyles}"/>
                     <ComboBox Name="Cmb_Invert"  Width="150" Margin="5 0 0 0" SelectedIndex="0"/>
                     <ComboBox Name="Cmb_SafeLevel" Width="50" Margin="5 0 0 0" SelectedIndex="0"/>
-                    <Button Width="100" Content="Übernehmen" Click="Btn_Click_Uebernehmen"/>
                 </WrapPanel>
             </Border>
+            <StackPanel>
+            </StackPanel>
             <WrapPanel>
-                <Button Width="150" Content="Spalte Name" Margin="5 0 0 0" Click="Btn_Click_Name"/>
-                <Button Width="150" Content="Spalte TypeOfSignal" Margin="5 0 0 0" Click="Btn_Click_TypeOfSignal"/>
-                <Button Width="150" Content="Spalte AssingedToDevice" Margin="5 0 0 0" Click="Btn_Click_AssingedToDevice"/>
-                <Button Width="150" Content="Spalte SignalIdent.Label" Margin="5 0 0 0" Click="Btn_Click_SignalIdentLabel"/>
-                <Button Width="150" Content="Spalte DeviceMapping" Margin="5 0 0 0" Click="Btn_Click_DeviceMapping"/>
-                <Button Width="150" Content="Spalte Category" Margin="5 0 0 0" Click="Btn_Click_Category"/>
+                <Button  Width="150" Content="Spalte Name" Margin="5 0 0 0" Click="Btn_Click_Name"/>
+                <Button  Width="150" Content="Spalte TypeOfSignal" Margin="5 0 0 0" Click="Btn_Click_TypeOfSignal"/>
+                <Button  Width="150" Content="Spalte AssingedToDevice" Margin="5 0 0 0" Click="Btn_Click_AssingedToDevice"/>
+                <Button  Width="150" Content="Spalte SignalIdent.Label" Margin="5 0 0 0" Click="Btn_Click_SignalIdentLabel"/>
+                <Button  Width="150" Content="Spalte DeviceMapping" Margin="5 0 0 0" Click="Btn_Click_DeviceMapping"/>
+                <Button  Width="150" Content="Spalte Category" Margin="5 0 0 0" Click="Btn_Click_Category"/>
                 <Button Width="150" Content="Spalte AccessLevel" Margin="5 0 0 0" Click="Btn_Click_AccessLevel"/>
                 <Button Width="150" Content="Spalte DefaultValue" Margin="5 0 0 0" Click="Btn_Click_DefaultValue"/>
                 <Button Width="150" Content="Spalte FilterPassive" Margin="5 0 0 0" Click="Btn_Click_FilterPassive"/>
@@ -88,7 +88,7 @@
         </StackPanel>
         <StackPanel Grid.Row="2">
             <DataGrid x:Name="datagrid" ItemsSource="{Binding}"  AutoGenerateColumns="False" SelectionChanged="datagrid_SelectionChanged"
-                      Height="350" Margin="0,0,-0.4,0" AlternatingRowBackground="LightBlue" HorizontalContentAlignment="Center">
+                      Height="250" Margin="0,0,-0.4,0" AlternatingRowBackground="LightBlue" HorizontalContentAlignment="Center">
                 <DataGrid.Style>
                     <Style TargetType="DataGrid">
                         <Setter Property="HorizontalGridLinesBrush" Value="LightGray"/>
@@ -98,19 +98,19 @@
                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
                     </Style>
                 </DataGrid.Style>
-            <DataGrid.Columns>
-                    <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-                    <DataGridTextColumn Header="TypeOfSignal" Binding="{Binding TypeOfSignal}"/>
-                    <DataGridTextColumn Header="AssingnedToDevice" Binding="{Binding AssingnedToDevice}"/>
-                    <DataGridTextColumn Header="SignalIdentificationLabel" Binding="{Binding SignalIdentificationLabel}"/>
-                    <DataGridTextColumn Header="DeviceMapping" Binding="{Binding DeviceMapping}"/>
-                    <DataGridTextColumn Header="Category"  Binding="{Binding Category}"/>
-                    <DataGridTextColumn Header="AccessLevel" Binding="{Binding AccessLevel}"/>
-                    <DataGridTextColumn Header="DefaultValue" Binding="{Binding DefaultValue}"/>
-                    <DataGridTextColumn Header="FilterTimePassive" Binding="{Binding FilterTimePassive}"/>
-                    <DataGridTextColumn Header="FilterTimeActive" Binding="{Binding FilterTimeActive}"/>
-                    <DataGridTextColumn Header="Safety" Binding="{Binding Safety}"/>
-                    <DataGridTextColumn Header="InvertPhysicalValue"  Binding="{Binding InvertPhysicalValue}"/>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Out_Name}"/>
+                    <DataGridTextColumn Header="TypeOfSignal" Binding="{Binding Out_TypeOfSignal}"/>
+                    <DataGridTextColumn Header="AssingnedToDevice" Binding="{Binding Out_AssingnedToDevice}"/>
+                    <DataGridTextColumn Header="SignalIdentificationLabel" Binding="{Binding Out_SignalIdentificationLabel}"/>
+                    <DataGridTextColumn Header="DeviceMapping" Binding="{Binding Out_DeviceMapping}"/>
+                    <DataGridTextColumn Header="Category"  Binding="{Binding Out_Category}"/>
+                    <DataGridTextColumn Header="AccessLevel" Binding="{Binding Out_AccessLevel}"/>
+                    <DataGridTextColumn Header="DefaultValue" Binding="{Binding Out_DefaultValue}"/>
+                    <DataGridTextColumn Header="FilterTimePassive" Binding="{Binding Out_FilterTimePassive}"/>
+                    <DataGridTextColumn Header="FilterTimeActive" Binding="{Binding Out_FilterTimeActive}"/>
+                    <DataGridTextColumn Header="Safety" Binding="{Binding Out_Safety}"/>
+                    <DataGridTextColumn Header="InvertPhysicalValue"  Binding="{Binding Out_InvertPhysicalValue}"/>
                 </DataGrid.Columns>
             </DataGrid>
             <Border BorderBrush="Black" BorderThickness="0 2">
@@ -127,14 +127,13 @@
                 </WrapPanel>
             </Border>
             <WrapPanel>
-                <ScrollViewer>
-                    <TextBox Height="350" Width="600" x:Name="result" VerticalAlignment="Bottom" Background="LightYellow" FontSize="14"/>
+                <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="auto">
+                    <TextBox Height="450" Width="600" x:Name="result" Margin="15 0 0 0" VerticalAlignment="Bottom" Background="LightYellow" FontSize="14"/>
                 </ScrollViewer>
-                <ScrollViewer>
-                    <TextBox Height="350" Width="600" x:Name="resultXml" VerticalAlignment="Bottom" Background="LightYellow" FontSize="14"/>
+                <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto">
+                    <TextBox Height="450" Width="1000" Margin="15 0 0 0" x:Name="resultXml" VerticalAlignment="Bottom" Background="LightYellow" FontSize="14"/>
                 </ScrollViewer>
             </WrapPanel>
-            <TextBox Width="300" Height="30" x:Name="showString" HorizontalAlignment="Left" />
         </StackPanel>
     </Grid>
 </Window>

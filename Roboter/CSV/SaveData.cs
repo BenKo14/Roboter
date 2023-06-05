@@ -12,7 +12,6 @@ namespace Roboter
     {
 
         private DataTable _datatable = new DataTable("Projektnamen");
-        
 
         public DataTable Datatable
         {
@@ -20,23 +19,21 @@ namespace Roboter
             set { _datatable = value; }
         }
 
-       
-
         public void ExportToCsv(DataTable dt, string strFilePath)
         {
             StreamWriter sw = new StreamWriter(strFilePath, false);
             int iColumnCount = dt.Columns.Count;
 
-            for(int i = 0; i < iColumnCount; i++)
+            for (int i = 0; i < iColumnCount; i++)
             {
                 sw.Write(dt.Columns[i]);
-                if(i < iColumnCount - 1)
+                if (i < iColumnCount - 1)
                 {
                     sw.Write(",");
                 }
             }
             sw.Write(sw.NewLine);
-            foreach(DataRow row in dt.Rows)
+            foreach (DataRow row in dt.Rows)
             {
                 for (int i = 0; i < iColumnCount; i++)
                 {
@@ -44,7 +41,7 @@ namespace Roboter
                     {
                         sw.Write(row[i].ToString());
                     }
-                    if( i < iColumnCount - 1)
+                    if (i < iColumnCount - 1)
                     {
                         sw.Write(",");
                     }

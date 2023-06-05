@@ -11,7 +11,6 @@ namespace Roboter.Function
 {
     class LoaadFromXml
     {
-        
         public void loadDataFromXml(ComboBox cmb_Projectnamen, LoadData loadData, DataGrid datagrid)
         {
             if (cmb_Projectnamen.Items.Count != 0)
@@ -20,10 +19,8 @@ namespace Roboter.Function
                 Stream stream = new FileStream(path, FileMode.Open); // , FileMode.Open, FileAccess.Read
                 try
                 {
-                    
                     loadData.Datatable.ReadXml(stream);
                     datagrid.ItemsSource = loadData.Datatable.DefaultView;
-                    
                 }
                 catch (Exception ex)
                 {
@@ -34,8 +31,6 @@ namespace Roboter.Function
                     stream.Close();
                 }
             }
-
-
         }
     }
 }

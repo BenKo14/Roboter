@@ -10,14 +10,13 @@ namespace Roboter.Function
 {
     class FilePath
     {
-        public static string docPath = SetStartUpFolder.DirectoryPath + @"\Roboter\RoboXmlData\";
-        public List<string> Files { get; set; } 
+        public static string docPath = SetStartUpFolder.DirectoryPath + @"\RoboXmlData\";
+        public List<string> Files { get; set; }
 
 
         public List<string> GetFilePath()
         {
-            
-            return Files = new List<string>(Directory.GetFiles(docPath)); 
+            return Files = new List<string>(Directory.GetFiles(docPath));
         }
 
         public void SeperateFileName(List<string> ListProjectnames)
@@ -40,13 +39,11 @@ namespace Roboter.Function
 
         public void SetProjectNames(ComboBox cmb_ProjectNames, List<string> ListProjectnames)
         {
-            
-
             foreach (string s in ListProjectnames)
             {
                 cmb_ProjectNames.Items.Add(s);
             }
-                cmb_ProjectNames.SelectedIndex = (cmb_ProjectNames.HasItems) ? 0 : -1;
+            cmb_ProjectNames.SelectedIndex = (cmb_ProjectNames.HasItems) ? 0 : -1;
         }
     }
 }

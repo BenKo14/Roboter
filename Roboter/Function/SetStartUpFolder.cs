@@ -9,10 +9,14 @@ using System.Windows;
 
 namespace Roboter
 {
-   public class SetStartUpFolder
+    class SetStartUpFolder
     {
+        static SetStartUpFolder()
+        {
+            DirectoryPath = BuildStartLocation();
+        }
         public static string DirectoryPath { get; set; }
-        public void BuildStartLocation()
+        public static string BuildStartLocation()
         {
             DirectoryPath = Directory.GetCurrentDirectory();
             int resultPath = DirectoryPath.LastIndexOf('\\');
@@ -21,7 +25,6 @@ namespace Roboter
             DirectoryPath = DirectoryPath.Substring(0, resultPath);
             resultPath = DirectoryPath.LastIndexOf('\\');
             DirectoryPath = DirectoryPath.Substring(0, resultPath);
-            
 
             if (!Directory.Exists(DirectoryPath + "\\RoboCfgData"))
             {
@@ -36,7 +39,7 @@ namespace Roboter
                 Directory.CreateDirectory(DirectoryPath + "\\RoboCsvData");
             }
 
-
+            return DirectoryPath;
 
         }
 
